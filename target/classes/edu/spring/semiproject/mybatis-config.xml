@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  <!-- mybatis db 연결정보 세팅 파일 -->
+<configuration>
+
+	<!-- db에서 받아와서 매핑할 클래스 -->
+	<typeAliases>
+		<typeAlias type="edu.spring.semiproject.MemberVO" alias="memberVO"/>
+		<typeAlias type="edu.spring.semiproject.BoardVO" alias="boardVO"/>
+		<typeAlias type="edu.spring.semiproject.ReplyVO" alias="replyVO"/>
+		<typeAlias type="edu.spring.semiproject.RecommendVO" alias="recommendVO"/>
+	</typeAliases>
+	
+	
+	
+</configuration>
