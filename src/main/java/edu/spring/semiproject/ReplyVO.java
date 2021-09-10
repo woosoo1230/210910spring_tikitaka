@@ -2,16 +2,17 @@ package edu.spring.semiproject;
 
 public class ReplyVO {
 
-	int rno, mno;
-	String replycontent, replydate;
+	int rno, mno, bno;
+	String replycontent, replyregdate;
 	
 	public ReplyVO() {}
-	public ReplyVO(int rno, int mno, String replycontent, String replydate) {
+	public ReplyVO(int rno, int mno, int bno, String replycontent, String replyregdate) {
 		super();
 		this.rno = rno;
 		this.mno = mno;
+		this.bno = bno;
 		this.replycontent = replycontent;
-		this.replydate = replydate;
+		this.replyregdate = replyregdate;
 	}
 	public int getRno() {
 		return rno;
@@ -25,17 +26,23 @@ public class ReplyVO {
 	public void setMno(int mno) {
 		this.mno = mno;
 	}
+	public int getBno() {
+		return bno;
+	}
+	public void setBno(int bno) {
+		this.bno = bno;
+	}
 	public String getReplycontent() {
 		return replycontent;
 	}
 	public void setReplycontent(String replycontent) {
 		this.replycontent = replycontent;
 	}
-	public String getReplydate() {
-		return replydate;
+	public String getreplyregdate() {
+		return replyregdate;
 	}
-	public void setReplydate(String replydate) {
-		this.replydate = replydate;
+	public void setreplyregdate(String replyregdate) {
+		this.replyregdate = replyregdate;
 	}
 	
 	

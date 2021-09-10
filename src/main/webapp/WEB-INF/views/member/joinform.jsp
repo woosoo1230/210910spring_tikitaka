@@ -22,123 +22,165 @@
           font-size: 3.5rem;
         }
       }
-    </style>
+      
+      .id_ok{ display: none;}
+      .id_already{color:#6A82FB; display: none;}
+      
+      .nickname_ok{ display: none;}
+      .nickname_already{color:#6A82FB; display: none;}
+    
+</style>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+    function checkId(){
+        var mid = $('#mid').val(); 
+        //alert(mid)
+        $.ajax({
+            url:'/semiproject/idCheck', 
+            type:'post', //POST 방식으로 전달
+            data:{mid:mid},
+            success:function(cnt){
+                //console.log("처리 성공 시 변경되는 내용");
+            	if(cnt != 1){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
+                    $('.id_ok').css("display","inline-block"); 
+                    $('.id_already').css("display", "none");
+                } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
+                    $('.id_already').css("display","inline-block");
+                    $('.id_ok').css("display", "none");
+                }
+            },
+            error:function(){
+                alert("에러입니다");
+            }
+        });
+    };
+    
+    function checkNickname(){
+        var nickname = $('#nickname').val(); 
+        //alert(nickname);
+        $.ajax({
+            url:'/semiproject/nicknameCheck', 
+            type:'post', //POST 방식으로 전달
+            data:{nickname:nickname},
+            success:function(cnt){
+                //console.log("처리 성공 시 변경되는 내용");
+            	if(cnt != 1){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
+                    $('.nickname_ok').css("display","inline-block"); 
+                    $('.nickname_already').css("display", "none");
+                } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
+                    $('.nickname_already').css("display","inline-block");
+                    $('.nickname_ok').css("display", "none");
+                }
+            },
+            error:function(){
+                alert("에러입니다");
+            }
+        });
+    };
+    
+    function pwCheck(){
+    	var mpw = $("#mpw").val();
+    	var mpw2 = $("#mpw2").val();
+    	if(mpw != mpw2){
+    		$("#pwCheckMessage").html("비밀번호가 일치하지 않습니다.");
+    	}else{
+    		$("#pwCheckMessage").html("");
+    	}
+    }
+    
+    $(function(){
+    	$("#joinBtn").click(function(){
+    		if($("#mid").val().length == 0){
+    			alert("아이디를 입력하세요");
+    			$("#mid").focus();
+    			return false;
+    		}
+    		if($("#mpw").val().length == 0){
+    			alert("비밀번호를 입력하세요");
+    			$("#mpw").focus();
+    			return false;
+    		}
+    		if($("#mpw2").val().length == 0){
+    			alert("비밀번호 확인을 입력하세요");
+    			$("#mpw2").focus();
+    			return false;
+    		}
+    		if($("#mname").val().length == 0){
+    			alert("이름을 입력하세요");
+    			$("#mname").focus();
+    			return false;
+    		}
+    		if($("#nickname").val().length == 0){
+    			alert("닉네임을 입력하세요");
+    			$("#nickname").focus();
+    			return false;
+    		}
+    	});
+    });
+</script>
 
 </head>
 <body  class="pt-5">
-<header>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">TIKI TAKA</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<%@include file="../common/header.jsp" %>
 
-    <div class="collapse navbar-collapse" id="navbarColor02">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Home
-            <span class="visually-hidden">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
-          </div>
-        </li>
-      </ul>
-       <span class="navbar-text">
-      <ul class="navbar-nav me-auto">
-        <li>
-	       <a class="nav-link" href="login">LOGIN</a>
-        </li>
-        <li>
-        	<a class="nav-link" href="#">SIGN IN</a>
-        </li>
-      </ul>
-      </span>
-    </div>
-  </div>
-</nav>
-</header>
 <div class="text-center container mt-5">
-    
 <main class="form-signin">
-  <form action="joinmember" method="post" class="needs-validation" novalidate>
-	<div class="col-md-7 col-lg-12">
-        <h4 class="mb-3">회원 가입</h4>
-          <div class="row g-3">
-            
-            <div class="col-sm-12">
-              <label for="firstName" class="form-label">아이디</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required name="mid">
-              <div class="invalid-feedback">
-                Valid first name is required.
-              </div>
-            </div>
-            
-            <div class="col-sm-12">
-              <label for="firstName" class="form-label">암호</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required name="mpw">
-              <div class="invalid-feedback">
-                Valid first name is required.
-              </div>
-            </div>
-            
-            <div class="col-sm-12">
-              <label for="firstName" class="form-label">이름</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required name="mname">
-              <div class="invalid-feedback">
-                Valid first name is required.
-              </div>
-            </div>
-            
-            <div class="col-sm-12">
-              <label for="firstName" class="form-label">닉네임</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required name="nickname">
-              <div class="invalid-feedback">
-                Valid first name is required.
-              </div>
-            </div>
-            
-             <hr class="my-4">
-
-          <button class="w-100 btn btn-secondary btn-lg" type="submit">회원가입하기</button>
-
-
-          </div>
-</div></form>
+  
+	<div class="container">
+		<form action="${pageContext.request.contextPath}/joinmember" method="post">
+			<table class="table table-hover">
+			  <thead>
+			    <tr>
+			      <th scope="col" colspan="3">회원 가입 양식</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+			      <th scope="row">아이디</th>
+			      <td><input type="text" class="form-control" id="mid" name="mid"></td>
+			      <td>
+					<span class="id_ok">사용 가능한 아이디입니다.</span>
+					<span class="id_already">이미 사용 중인 아이디입니다. 다시 작성해주세요.</span>
+			      <button type="button" class="btn btn-secondary" onclick="checkId();">아이디 중복체크</button>
+			      </td>
+			    </tr>
+			    <tr>
+			      <th scope="row">비밀번호</th>
+			      <td colspan="2"><input type="text" class="form-control" id="mpw" name="mpw" onkeyup="pwCheck();"></td>
+			    </tr>
+			    <tr>
+			      <th scope="row">비밀번호 확인</th>
+			      <td colspan="2"><input type="text" class="form-control" id="mpw2" name="mpw2" onkeyup="pwCheck();"></td>
+			    </tr>
+			    <tr>
+			      <th scope="row">이름</th>
+			      <td colspan="2"><input type="text" class="form-control" id="mname" name="mname"></td>
+			    </tr>
+			    <tr>
+			      <th scope="row">닉네임</th>
+			      <td><input type="text" class="form-control" id="nickname" name="nickname"></td>
+			      <td>
+			      	<span class="nickname_ok">사용 가능한 닉네임입니다.</span>
+					<span class="nickname_already">이미 사용 중인 닉네임입니다. 다시 작성해주세요.</span>
+			      	<button type="button" class="btn btn-secondary" onclick="checkNickname();">닉네임 중복체크</button>
+			      </td>
+			    </tr>
+			     <tr>
+			      <td colspan="3" ><h5 style="color: tomato;" id="pwCheckMessage"></h5><button type="button" class="btn btn-secondary" id="joinBtn">회원가입</button></td>
+			    </tr>
+			  </tbody>
+			</table>
+		</form>
+	</div>
 </main>
 </div>
 
 <div class="b-example-divider"></div>
 
-<div class="container">
-  <footer class="py-3 my-4">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
-    </ul>
-    <p class="text-center text-muted">&copy; 2021 Company, Inc</p>
-  </footer>
-</div>
+<%@include file="../common/footer.jsp" %>
+
+
 
 
 </body>

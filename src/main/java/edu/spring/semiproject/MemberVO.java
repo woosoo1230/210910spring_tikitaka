@@ -1,17 +1,18 @@
 package edu.spring.semiproject;
 
 public class MemberVO {
-	int mno;
+	int mno, mstate;
 	String mid, mpw, mname, nickname;
 	
 	public MemberVO() {}
-	public MemberVO(int mno, String mid, String mpw, String mname, String nickname) {
+	public MemberVO(int mno, String mid, String mpw, String mname, String nickname, int mstate) {
 		super();
 		this.mno = mno;
 		this.mid = mid;
 		this.mpw = mpw;
 		this.mname = mname;
 		this.nickname = nickname;
+		this.mstate = mstate;
 	}
 	public int getMno() {
 		return mno;
@@ -42,6 +43,12 @@ public class MemberVO {
 	}
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
+	}
+	public int getMstate() {
+		return mstate;
+	}
+	public void setMstate(int mstate) {
+		this.mstate = mstate;
 	}
 	
 	

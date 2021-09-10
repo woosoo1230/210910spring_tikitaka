@@ -26,59 +26,11 @@
 
 </head>
 <body  class="pt-5">
-<header>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">TIKI TAKA</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarColor02">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Home
-            <span class="visually-hidden">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
-          </div>
-        </li>
-      </ul>
-       <span class="navbar-text">
-      <ul class="navbar-nav me-auto">
-        <li>
-	       <a class="nav-link" href="login">LOGIN</a>
-        </li>
-        <li>
-        	<a class="nav-link" href="#">SIGN IN</a>
-        </li>
-      </ul>
-      </span>
-    </div>
-  </div>
-</nav>
-</header>
+<%@include file="../common/header.jsp" %>
 <div class="text-center container mt-5">
     
 <main class="form-signin">
-  <form action="login" method="post">
+  <form action="${pageContext.request.contextPath}/login" method="post">
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
     <div class="form-floating mb-3">
@@ -100,19 +52,7 @@
 
 <div class="b-example-divider"></div>
 
-<div class="container">
-  <footer class="py-3 my-4">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
-    </ul>
-    <p class="text-center text-muted">&copy; 2021 Company, Inc</p>
-  </footer>
-</div>
-
+<%@include file="../common/footer.jsp" %>
 
 </body>
 </html>

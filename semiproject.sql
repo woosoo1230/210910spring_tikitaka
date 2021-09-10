@@ -42,3 +42,5 @@ CREATE SEQUENCE recommend_seq;
 
 --샘플데이터
 insert into memberTBL(mno, mid, mpw, mname, nickname) values(mno_seq.nextval, 'aaa', '111', 'asdf', '핳');
+
+insert into boardTBL(bno, subject, content, mno) values(bno_seq.nextval, '제목', '내용', 2)

@@ -3,16 +3,106 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="member">
+	<!-- 로그인 -->
 	<select id="logincheck" resultType="memberVO"  parameterType="memberVO" >
 		select * from memberTBL
 		where mid = #{mid} and mpw = #{mpw}
 	</select>
 	
+	<!-- 아이디 중복 체크 -->
+	<select id="idCheck" parameterType="string" resultType="int">
+		select count(mid) from memberTBL
+		where mid = #{mid}
+	</select>
+	
+	<!-- 닉네임 중복 체크 -->
+	<select id="nicknameCheck" parameterType="string" resultType="int">
+		select count(nickname) from memberTBL
+		where nickname = #{nickname}
+	</select>
+	
+	<!-- 회원가입 -->
 	<insert id="insertmember" parameterType="memberVO">
 		insert into memberTBL(mno, mid, mpw, mname, nickname)
 		values(mno_seq.nextval, #{mid}, #{mpw}, #{mname}, #{nickname})
 	</insert>
 	
+	<!-- 내 정보조히 -->
+	<select id="selectMember" parameterType="string" resultType="memberVO">
+		select * from memberTBL
+		where mid = #{mid}
+	</select>
 	
+	<!-- 내 정보수정 -->
+	<update id="updateInfo" parameterType="memberVO">
+		update memberTBL
+		set nickname = #{nickname}
+		where mid = #{mid} 
+	</update>
+	
+	<!-- 멤버 전체 조회 -->
+	<select id="selectAll" resultType="memberVO">
+		select * from memberTBL
+		order by mno desc
+	</select>
+	
+	<!-- 멤버 상세 조회 -->
+	<select id="selectOne" parameterType="int" resultType="memberVO">
+		select * from memberTBL
+		where mno =#{mno}
+	</select>
+	
+	<!-- 멤버 상태 변경 -->
+	<update id="updateState" parameterType="memberVO">
+		update memberTBL
+		set mstate = #{mstate}
+		where mno = #{mno}
+	</update>
+	
+	<!-- 글 전체 조회 -->
+	<select id="selectAllBoard" resultType="boardVO">
+		select * from boardTBL
+		order by regdate desc
+	</select>
+	
+	<!-- 글 상세 조회 -->
+	<select id="boardDetail" parameterType="int" resultType="boardVO">
+		select * from boardTBL
+		where bno = #{bno}
+	</select>
+	
+	<!-- 조회수 증가 -->
+	<update id="updateReadnum" parameterType="int">
+		update boardTBL
+		set readnum = readnum+1
+		where bno = #{bno}
+	</update>
+	
+	<!-- 글 작성 -->
+	<insert id="insertBoard" parameterType="boardVO">
+		insert into boardTBL(bno, subject, content, mno) 
+		values(bno_seq.nextval, #{subject}, #{content}, #{mno})
+	</insert>
+	
+	<!-- 글 수정 -->
+	<update id="updateBoard" parameterType="boardVO">
+		update boardTBL
+		set subject = #{subject}, content = #{content}
+		where bno = #{bno}
+	</update>
+	
+	<!-- 글 삭제 -->
+	
+	<!-- 글번호에 해당하는 댓글 조회 -->
+	<select id="selectReplyBybno" parameterType="int" resultType="replyVO">
+		select * from replyTBL
+		where bno = #{bno}
+	</select>
+	
+	<!-- 댓글 작성 -->
+	<insert id="insertReply" parameterType="replyVO">
+		insert into replyTBL(rno, bno, mno, replycontent) 
+		values(rno_seq.nextval, #{bno}, #{mno}, #{replycontent})
+	</insert>
 	
 </mapper>
