@@ -92,6 +92,10 @@
 	</update>
 	
 	<!-- 글 삭제 -->
+	<delete id="deleteBoard" parameterType="int">
+		delete from boardTBL
+		where bno = #{bno}
+	</delete>
 	
 	<!-- 글번호에 해당하는 댓글 조회 -->
 	<select id="selectReplyBybno" parameterType="int" resultType="replyVO">

@@ -26,7 +26,7 @@
         글 작성하기
       </h3>
 
-		<form action="${pageContext.request.contextPath}/insert" method="post">
+		<form action="insert" method="post">
 		  <fieldset>
 		    <div class="form-group">
 		      <label for="exampleInputEmail1" class="form-label mt-4">제목</label>

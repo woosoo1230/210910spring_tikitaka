@@ -39,4 +39,9 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.selectReplyBybno(bno);
 	}
 
+	@Override
+	public void deleteBoard(int bno) {
+		boardDAO.deleteBoard(bno);
+	}
+
 }

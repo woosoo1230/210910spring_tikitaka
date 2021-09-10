@@ -35,4 +35,8 @@ public class BoardDAO {
 	public List<ReplyVO> selectReplyBybno(int bno){
 		return session.selectList("member.selectReplyBybno", bno);
 	}
+	
+	public void deleteBoard(int bno) {
+		session.delete("member.deleteBoard", bno);
+	}
 }

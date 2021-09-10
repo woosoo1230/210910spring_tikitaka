@@ -81,4 +81,10 @@ public class BoardController {
 		boardService.insertBoard(board);
 		return "redirect:/board/list";
 	}
+	
+	@RequestMapping("board/deleteBoard")
+	public String deleteBoard(int bno) {
+		boardService.deleteBoard(bno);
+		return "redirect:/board/list";
+	}
 }

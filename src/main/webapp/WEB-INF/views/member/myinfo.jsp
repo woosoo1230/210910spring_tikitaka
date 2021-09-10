@@ -76,7 +76,7 @@ $(function(){
 			<table class="table table-hover">
 			  <thead>
 			    <tr>
-			      <th scope="col" colspan="3">회원 가입 양식</th>
+			      <th scope="col" colspan="3">내 정보</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -101,7 +101,7 @@ $(function(){
 			    </tr>
 			     <tr>
 			      <td colspan="3" >
-			      <input type="submit" id="updateBtn" value="내 정보수정"> 
+			      <input type="submit" class="btn btn-secondary" id="updateBtn" value="내 정보수정"> 
 			      
 			      </td>
 			    </tr>

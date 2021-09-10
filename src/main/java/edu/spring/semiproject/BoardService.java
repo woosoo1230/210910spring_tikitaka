@@ -8,4 +8,5 @@ public interface BoardService {
 	public void updateBoard(BoardVO vo);
 	public void insertBoard(BoardVO vo);
 	public List<ReplyVO> selectReplyBybno(int bno);
+	public void deleteBoard(int bno);
 }

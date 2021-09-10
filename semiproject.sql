@@ -25,8 +25,8 @@ create table replyTBL(
  rno number constraint rno_pk primary key,
  bno number constraint bno_fk references board(bno),
  mno number(8) constraint reply_mno_fk references member(mno),
- reply_content varchar2(1000) not null,
- reply_regdate date default sysdate
+ replycontent varchar2(1000) not null,
+ replyregdate date default sysdate
 );
 
 CREATE SEQUENCE rno_seq;
@@ -43,4 +43,7 @@ CREATE SEQUENCE recommend_seq;
 --샘플데이터
 insert into memberTBL(mno, mid, mpw, mname, nickname) values(mno_seq.nextval, 'aaa', '111', 'asdf', '핳');
 
-insert into boardTBL(bno, subject, content, mno) values(bno_seq.nextval, '제목', '내용', 2)
+insert into boardTBL(bno, subject, content, mno) values(bno_seq.nextval, '제목', '내용', 2);
+
+insert into replyTBL(rno, bno, mno, replycontent) values(rno_seq.nextval, 1, 3,'내용');
+

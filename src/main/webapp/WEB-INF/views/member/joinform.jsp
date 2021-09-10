@@ -147,11 +147,11 @@
 			    </tr>
 			    <tr>
 			      <th scope="row">비밀번호</th>
-			      <td colspan="2"><input type="text" class="form-control" id="mpw" name="mpw" onkeyup="pwCheck();"></td>
+			      <td colspan="2"><input type="password" class="form-control" id="mpw" name="mpw" onkeyup="pwCheck();"></td>
 			    </tr>
 			    <tr>
 			      <th scope="row">비밀번호 확인</th>
-			      <td colspan="2"><input type="text" class="form-control" id="mpw2" name="mpw2" onkeyup="pwCheck();"></td>
+			      <td colspan="2"><input type="password" class="form-control" id="mpw2" name="mpw2" onkeyup="pwCheck();"></td>
 			    </tr>
 			    <tr>
 			      <th scope="row">이름</th>
@@ -167,7 +167,8 @@
 			      </td>
 			    </tr>
 			     <tr>
-			      <td colspan="3" ><h5 style="color: tomato;" id="pwCheckMessage"></h5><button type="button" class="btn btn-secondary" id="joinBtn">회원가입</button></td>
+			      <td colspan="3" ><h5 style="color: tomato;" id="pwCheckMessage"></h5>
+			      <input type="submit" class="btn btn-secondary" id="joinBtn" value="회원가입"></td>
 			    </tr>
 			  </tbody>
 			</table>
