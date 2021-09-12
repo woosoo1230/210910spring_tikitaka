@@ -103,10 +103,41 @@
 		where bno = #{bno}
 	</select>
 	
+	<!-- 글번호에 해당하는 추천인 조회 -->
+	<select id="selectRecommendBybno" parameterType="int" resultType="recommendVO">
+		select * from recommendTBL 
+		where bno = #{bno} and mno = #{mno}
+	</select>
+	
 	<!-- 댓글 작성 -->
 	<insert id="insertReply" parameterType="replyVO">
 		insert into replyTBL(rno, bno, mno, replycontent) 
 		values(rno_seq.nextval, #{bno}, #{mno}, #{replycontent})
 	</insert>
 	
+	<!-- 추천 -->
+	<insert id="insertRecommend" parameterType="recommendVO">
+		insert into recommendTBL(recommendno, mno, bno) 
+		values(recommend_seq.nextval, #{mno}, #{bno})
+	</insert>
+	
+	<!-- 추천취소 -->
+	<delete id="deleteRecommend" parameterType="recommendVO">
+		delete from recommendTBL
+		where mno = #{mno} and bno = #{bno}
+	</delete>
+	
+	<!-- 추천수 증가 -->
+	<update id="recommendUp" parameterType="int">
+		update boardTBL
+		set recommend = recommend+1
+		where bno = #{bno}
+	</update>
+	
+	<!-- 추천수 감소 -->
+	<update id="recommendDown" parameterType="int">
+		update boardTBL
+		set recommend = recommend-1
+		where bno = #{bno}
+	</update>	
 </mapper>

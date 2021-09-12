@@ -44,4 +44,19 @@ public class BoardServiceImpl implements BoardService {
 		boardDAO.deleteBoard(bno);
 	}
 
+	@Override
+	public List<RecommendVO> selectRecommendBybno(RecommendVO vo) {
+		return boardDAO.selectRecommendBybno(vo);
+	}
+
+	@Override
+	public void recommendUp(int bno) {
+		boardDAO.recommendUp(bno);
+	}
+
+	@Override
+	public void recommendDown(int bno) {
+		boardDAO.recommendDown(bno);
+	}
+
 }

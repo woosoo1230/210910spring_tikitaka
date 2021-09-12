@@ -47,3 +47,11 @@ insert into boardTBL(bno, subject, content, mno) values(bno_seq.nextval, '제목',
 
 insert into replyTBL(rno, bno, mno, replycontent) values(rno_seq.nextval, 1, 3,'내용');
 
+ALTER TABLE recommendTBL ADD UNIQUE (bno, mno);
+
+--추천 안한 사람 bno에 해당하는 recommendTBL 조회해서 가져오고 -> 로그인 아이디가 있는지 그니까
+
+select mno from recommendTBL where bno = #{bno} --bno에 추천한 사람 목록
+
+--이걸 모델에 담고 반복돌려서 mno에 해당한다 그러면 추천취소 버튼 아니면 추천 버튼
+

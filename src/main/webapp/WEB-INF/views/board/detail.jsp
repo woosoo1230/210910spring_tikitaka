@@ -28,15 +28,25 @@
       </h3>
 
       <article class="blog-post">
-        <h2 class="blog-post-title mb-3">${board.subject }</h2>
-        <p class="blog-post-meta text-muted">${board.regdate } | 작성자 : ${member.nickname } | 조회수 : ${board.readnum } | 추천수 : ${board.recommend }
+        <h2 class="blog-post-title mb-3">${board.subject }
+        </h2>
+        <p class="blog-post-meta text-muted text-end">${board.regdate } | 작성자 : ${member.nickname } | 조회수 : ${board.readnum } | 추천수 : ${board.recommend }
         <c:choose>
-      	<c:when test="${isLogOn==true and not empty vo}">
+      	<c:when test="${isLogOn==true and not empty vo and vo.mno == member.mno}">
       	| <a href="${pageContext.request.contextPath}/board/updateBoard?bno=${board.bno }">수정</a> | <a href="${pageContext.request.contextPath}/board/deleteBoard?bno=${board.bno}" id="deleteBtn">삭제</a>
-      	
       	</c:when></c:choose>
         </p>
-        <p>${board.content }</p>
+        <p class="mt-3 mb-5">${board.content }</p>
+		<c:choose>
+			<c:when test="${isLogOn==true and not empty vo and empty recommendlist}">
+		        <p class="blog-post-meta text-muted text-center mt-5">
+		        <a href="${pageContext.request.contextPath}/board/insertRecommend?bno=${board.bno }" class="btn btn-outline-secondary ">추천하기</a></p>
+			</c:when>
+			<c:when test="${isLogOn==true and not empty vo and not empty recommendlist}">
+		        <p class="blog-post-meta text-muted text-center mt-5">
+		        <a href="${pageContext.request.contextPath}/board/deleteRecommend?bno=${board.bno }" class="btn btn-outline-danger ">추천 취소하기</a></p>
+			</c:when>
+		</c:choose>        
         <hr>
 		</article>
     </div>

@@ -39,4 +39,16 @@ public class BoardDAO {
 	public void deleteBoard(int bno) {
 		session.delete("member.deleteBoard", bno);
 	}
+	
+	public List<RecommendVO> selectRecommendBybno(RecommendVO vo) {
+		return session.selectList("member.selectRecommendBybno", vo);
+	}
+	
+	public void recommendUp(int bno) {
+		session.update("member.recommendUp", bno);
+	}
+	
+	public void recommendDown(int bno) {
+		session.update("member.recommendDown", bno);
+	}
 }

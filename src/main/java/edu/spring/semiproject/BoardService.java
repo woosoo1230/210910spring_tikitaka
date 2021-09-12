@@ -9,4 +9,7 @@ public interface BoardService {
 	public void insertBoard(BoardVO vo);
 	public List<ReplyVO> selectReplyBybno(int bno);
 	public void deleteBoard(int bno);
+	public List<RecommendVO> selectRecommendBybno(RecommendVO vo);
+	public void recommendUp(int bno);
+	public void recommendDown(int bno);
 }
