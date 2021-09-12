@@ -12,4 +12,5 @@ public interface BoardService {
 	public List<RecommendVO> selectRecommendBybno(RecommendVO vo);
 	public void recommendUp(int bno);
 	public void recommendDown(int bno);
+	public void upload(UploadVO vo);
 }

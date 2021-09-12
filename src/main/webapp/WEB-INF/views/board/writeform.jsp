@@ -26,7 +26,7 @@
         글 작성하기
       </h3>
 
-		<form action="insert" method="post">
+		<form action="insert" method="post" enctype="multipart/form-data">
 		  <fieldset>
 		    <div class="form-group">
 		      <label for="exampleInputEmail1" class="form-label mt-4">제목</label>
@@ -35,6 +35,10 @@
 		    <div class="form-group">
 		      <label for="exampleTextarea" class="form-label mt-4">내용</label>
 		      <textarea class="form-control" id="exampleTextarea" rows="3" name="content"></textarea>
+		    </div>
+		    <div class="form-group">
+		      <label for="formFile" class="form-label mt-4">사진 업로드하기</label>
+		      <input class="form-control" type="file" id="formFile" name="filename" accept=".jpg, .png, .jpeg">
 		    </div>
 		    <input type="submit" class="btn btn-primary" value="작성">
 		  </fieldset>

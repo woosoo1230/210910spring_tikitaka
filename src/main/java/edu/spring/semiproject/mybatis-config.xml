@@ -11,6 +11,7 @@
 		<typeAlias type="edu.spring.semiproject.BoardVO" alias="boardVO"/>
 		<typeAlias type="edu.spring.semiproject.ReplyVO" alias="replyVO"/>
 		<typeAlias type="edu.spring.semiproject.RecommendVO" alias="recommendVO"/>
+		<typeAlias type="edu.spring.semiproject.UploadVO" alias="uploadVO"/>
 	</typeAliases>
 	
 	

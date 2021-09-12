@@ -1,13 +1,18 @@
 package edu.spring.semiproject;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.naming.java.javaURLContextFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -88,12 +93,38 @@ public class BoardController {
 	}
 	
 	@RequestMapping("board/insert")
-	public String insertBoard(BoardVO board ,HttpServletRequest request) {
+	public String insertBoard(BoardVO board ,HttpServletRequest request, MultipartFile filename) throws IOException {
 		HttpSession session = request.getSession();
 		session= request.getSession();
 		MemberVO vo = (MemberVO)session.getAttribute("vo");
 		board.setMno(vo.getMno());
 		boardService.insertBoard(board);
+		//System.out.println(file);
+		//System.out.println(file.getSize());
+		//업로드
+		if(filename.getSize() != 0) {
+		//전송파일 객체 생성
+		MultipartFile multi = filename;
+		//파일명 추출
+		String name = multi.getOriginalFilename();
+		//저장폴더
+		String savePath = "C:/kdigital2/workspace_spring/semiproject/src/main/webapp/resources/save";
+		//확장자 찾기
+		String ext = name.substring(name.lastIndexOf("."));
+		
+		name = getUuid()+ext;
+	
+		File file1 = new File(savePath, name);
+		
+		multi.transferTo(file1);
+		System.out.println(savePath+"="+name);
+		UploadVO upload = new UploadVO();
+		//System.out.println(board.getBno());
+		upload.setBno(board.getBno());
+		upload.setFilename(name);
+		//boardService.upload(upload);
+		}
+		
 		return "redirect:/board/list";
 	}
 	
@@ -130,5 +161,10 @@ public class BoardController {
 		
 		return "redirect:/board/detail/?bno="+bno+"&flag=1";
 			
+	}
+	
+	
+	public static String getUuid() {
+		return UUID.randomUUID().toString().replaceAll("-", "").substring(0, 10) ;
 	}
 }

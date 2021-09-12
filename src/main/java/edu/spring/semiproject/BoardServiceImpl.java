@@ -59,4 +59,9 @@ public class BoardServiceImpl implements BoardService {
 		boardDAO.recommendDown(bno);
 	}
 
+	@Override
+	public void upload(UploadVO vo) {
+		boardDAO.upload(vo);
+	}
+
 }

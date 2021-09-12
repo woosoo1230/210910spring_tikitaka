@@ -51,4 +51,8 @@ public class BoardDAO {
 	public void recommendDown(int bno) {
 		session.update("member.recommendDown", bno);
 	}
+	
+	public void upload(UploadVO vo) {
+		session.insert("member.upload", vo);
+	}
 }

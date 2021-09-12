@@ -140,4 +140,10 @@
 		set recommend = recommend-1
 		where bno = #{bno}
 	</update>	
+	
+	<!-- 사진업로드 -->
+	<insert id="upload" parameterType="uploadVO">
+		insert into uploadTBL(uploadno, bno, filename)
+		values(upload_seq.nextval, #{bno}, #{filename})
+	</insert>
 </mapper>
